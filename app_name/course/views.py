@@ -25,7 +25,8 @@ course = Blueprint('course', __name__,
 
 # region ================================= FUNGSI-FUNGSI AREA ==========================================================================
 
-role_group_all = ["mahasiswa", "mentor", "pengajar", "admin"]
+role_group_all = ["user", "admin"]
+role_all_user = ["murid", "guru"]
 
 
 def tambahLogs(logs):

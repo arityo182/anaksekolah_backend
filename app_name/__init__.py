@@ -1,5 +1,8 @@
 from .users.views import user
 from .course.views import course
+from .transaksi.views import transaksi
+from .tryout.views import tryout
+from .ekstrakulikuler.views import ekstrakulikuler
 from flask import Flask, make_response
 from json import dumps, loads
 from datetime import timedelta
@@ -571,5 +574,8 @@ def not_found(error):
 
 app.register_blueprint(user, url_prefix='/users')
 app.register_blueprint(course, url_prefix='/course')
+app.register_blueprint(ekstrakulikuler, url_prefix='/ekstrakulikuler')
+app.register_blueprint(tryout, url_prefix='/tryout')
+app.register_blueprint(transaksi, url_prefix='/transaksi')
 
 # --------------------- END REGISTER BLUEPRINT ------------------------

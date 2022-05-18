@@ -20,8 +20,8 @@ import cv2
 
 from .models import Data
 
-user = Blueprint('user', __name__,
-                 static_folder='../../upload/foto_user', static_url_path="/media")
+transaksi = Blueprint('transaksi', __name__,
+                      static_folder='../../upload/foto_user', static_url_path="/media")
 
 # region ================================= FUNGSI-FUNGSI AREA ==========================================================================
 
@@ -86,66 +86,8 @@ def random_string_number_only(stringLength):
 # region ================================= MY PROFILE AREA ==========================================================================
 
 # get profile user guru
-@user.route('/get_guru_profile', methods=['GET', 'OPTIONS'])
-@jwt_required()
-@cross_origin()
-def get_guru_profile():
-    try:
-
-        user_id = str(get_jwt()["user_id"])
-        role_desc = str(get_jwt()["role_desc"])
-
-        if role_desc not in role_group_all:
-            return permission_failed()
-
-        dt = Data()
-
-        query_temp = """SELECT a.* FROM course a WHERE guru_id = %s """
-        values_temp = (user_id, )
-
-        # data course
-        course_data = dt.get_data(query_temp, values_temp)
-        rowCount = dt.row_count(query_temp, values_temp)
-
-        # check course pada guru_id
-        if len(course_data) == 0:
-            return jsonify({"status": "Silakan Buat Course"})
-        else:
-            course_data = {'data': course_data,
-                           'status_code': 200, 'row_count': rowCount}
-        return make_response(jsonify(course_data), 200)
-    except Exception as e:
-        return bad_request(str(e))
-
-# get profile user siswa
-
-
-@user.route('/get_siswa_profile', methods=['GET', 'OPTIONS'])
-@jwt_required()
-@cross_origin()
-def get_siswa_profile():
-    try:
-        user_id = str(get_jwt()["user_id"])
-        role_desc = str(get_jwt()["role_desc"])
-
-        if role_desc not in role_group_all:
-            return permission_failed()
-
-        dt = Data()
-
-        query_temp = """SELECT a.* FROM course_diambil a WHERE murid = %s """
-        values_temp = (user_id, )
-
-        # data course
-        course_data = dt.get_data(query_temp, values_temp)
-        rowCount = dt.row_count(query_temp, values_temp)
-
-        # check course pada guru_id
-        if len(course_data) == 0:
-            return jsonify({"status": "Silakan Beli Course"})
-        else:
-            course_data = {'data': course_data,
-                           'status_code': 200, 'row_count': rowCount}
-        return make_response(jsonify(course_data), 200)
-    except Exception as e:
-        return bad_request(str(e))
+@transaksi.route('/get_transaksi', methods=['GET', 'OPTIONS'])
+# @jwt_required()
+# @cross_origin()
+def get_transaksie():
+    return "Hellow Word"
